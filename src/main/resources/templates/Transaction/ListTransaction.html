@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="~{BaseLayout :: headlayout}"></head>
+<body class="main-body">
+    <header th:replace="~{BaseLayout :: header}"></header>
+    <nav th:replace="~{BaseLayout :: navlayout}"></nav>
+    <div class="content">
+        <div class="grouptable">
+            <p th:text="|Transaction History of ${custname}|"></p>
+            <table>
+                <thead>
+                    <th>Transaction ID</th>
+                    <th>Check In Date</th>
+                    <th>Check Out Date</th>
+                    <th>Room Number</th>
+                    <th>Cost</th>
+                </thead>
+                <tbody>
+                    <tr th:each="data : ${listrans}" th:object="${data}">
+                        <td th:text="*{Idreserved}"></td>
+                        <td th:text="*{cekinformated}"></td>
+                        <td th:text="*{cekoutformated}"></td>
+                        <td th:text="*{RoomNumber}"></td>
+                        <td th:text="*{price}"></td>
+                    </tr>
+                </tbody>
+<!--                <tfoot>-->
+<!--                    <tr>-->
+<!--                        <td colspan="5" class="foottable">-->
+<!--                            <div class="pagedesc">-->
+<!--                                <div th:if="${totalpage != 0}"-->
+<!--                                     th:text="|page ${currentpage} of ${totalpage}|"></div>-->
+<!--                                <div>-->
+<!--                                    <a th:if="${totalpage !=0 }"-->
+<!--                                       th:each="data : ${#numbers.sequence(1, totalpage)}"-->
+<!--                                       th:text="${data}"-->
+<!--                                       th:href="@{/customer/list(currentpage=${data})}"></a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                </tfoot>-->
+            </table>
+        </div>
+    </div>
+</body>
+</html>

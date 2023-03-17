@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="~{BaseLayout :: headlayout}"></head>
+<body class="main-body">
+<header th:replace="~{BaseLayout :: header}"></header>
+<nav th:replace="~{BaseLayout :: navlayout}"></nav>
+<div class="content">
+    <div class="searchform">
+        <form th:attr="action=@{/customer/list}" method="get">
+            <table>
+                <tr>
+                    <td>
+                        <input type="text" name="custname"
+                               placeholder="Search customer name..." th:attr="value=${custsearch}">
+                    </td>
+                    <td>
+                        <button class="anchor-to-button" type="submit">Search</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div class="grouptable">
+        <table>
+            <thead>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                <tr th:each="data : ${listcust}" th:object="${data}">
+                    <td th:text="*{Name}"></td>
+                    <td th:text="*{Email}"></td>
+                    <td th:text="*{Address}"></td>
+                    <td>
+                        <div class="actionfield">
+                            <a th:href="@{/customer/transaction(custnumb=*{Username})}">Transaction History</a>
+                            <a th:href="@{/customer/delete(custnumb=*{Username})}">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="foottable">
+                        <div class="pagedesc">
+                            <div th:if="${totalpage != 0}"
+                                 th:text="|page ${currentpage} of ${totalpage}|"></div>
+                            <div>
+                                <a th:if="${totalpage !=0 }"
+                                   th:each="data : ${#numbers.sequence(1, totalpage)}"
+                                   th:text="${data}"
+                                   th:href="@{/customer/list(currentpage=${data})}"></a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+</body>
+</html>

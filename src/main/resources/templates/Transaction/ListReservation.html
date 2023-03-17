@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="~{BaseLayout :: headlayout}"></head>
+<body class="main-body">
+  <header th:replace="~{BaseLayout :: header}"></header>
+  <nav th:replace="~{BaseLayout :: navlayout}"></nav>
+
+  <div class="content">
+    <div class="searchform">
+      <form method="get" th:attr="action=@{/reserved/currentreserved}">
+        <table>
+          <tr>
+            <td>
+              <input type="text" name="custname"
+                     placeholder="search customer name" th:attr="value=${custname}">
+            </td>
+            <td>
+              <input type="text" name="roomnumb"
+                     placeholder="search room number" th:attr="value=${roomnumb}">
+            </td>
+            <td>
+              <button type="submit" class="anchor-to-button">Search</button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+
+    <div class="grouptable">
+      <table>
+        <thead>
+          <th>Customer</th>
+          <th>Room</th>
+          <th>Check In</th>
+          <th>Total Days</th>
+          <th>Bill</th>
+          <th>Status</th>
+          <th>Action</th>
+        </thead>
+        <tbody>
+          <tr th:each="data : ${lisresv}" th:object="${data}">
+            <td th:text="*{CustUsername}"></td>
+            <td th:text="*{RoomNumber}"></td>
+            <td th:text="*{cekinformated}"></td>
+            <td th:text="*{totalhari}"></td>
+            <td th:text="*{price}"></td>
+            <td th:text="*{Stringstatus}"></td>
+            <td>
+              <a th:if="*{Stringstatus != 'Confirmed'}"
+                 th:href="@{/reserved/delete(idreserv=*{Idreserved})}">Delete</a>
+            </td>
+          </tr>
+        </tbody>
+<!--        <tfoot>-->
+<!--          <tr>-->
+<!--            <td colspan="7" class="foottable">-->
+<!--              <div class="pagedesc">-->
+<!--                <div th:if="${totalpage != 0}"-->
+<!--                     th:text="|page ${currentpage} of ${totalpage}|"></div>-->
+<!--                <div>-->
+<!--                  <a th:if="${totalpage !=0 }"-->
+<!--                     th:each="data : ${#numbers.sequence(1, totalpage)}"-->
+<!--                     th:text="${data}"-->
+<!--                     th:href="@{/reserved/currentreserved(halaman=${data})}"></a>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </td>-->
+<!--          </tr>-->
+<!--        </tfoot>-->
+      </table>
+    </div>
+  </div>
+</body>
+</html>

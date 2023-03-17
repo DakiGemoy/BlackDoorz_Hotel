@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="~{BaseLayout :: headlayout}"></head>
+<body class="main-body">
+    <header th:replace="~{BaseLayout :: header}"></header>
+    <nav th:replace="~{BaseLayout :: navlayout}"></nav>
+    <div class="content">
+        <div class="formtable" th:object="${obj}">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label>RoomNumber</label>
+                        </td>
+                        <td></td>
+                        <td>
+                            <label th:text="*{RoomNumber}"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Room Type</label>
+                        </td>
+                        <td></td>
+                        <td>
+                            <label th:text="*{Roomtype}"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Customer Name</label>
+                        </td>
+                        <td></td>
+                        <td>
+                            <label th:text="*{CustUsername}"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Check In</label>
+                        </td>
+                        <td></td>
+                        <td>
+                            <label th:text="*{cekinformated}"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Check Out</label>
+                        </td>
+                        <td></td>
+                        <td>
+                            <label th:text="*{cekoutformated}"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Bill</label>
+                        </td>
+                        <td></td>
+                        <td>
+                            <label th:text="*{price}"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Status</label>
+                        </td>
+                        <td></td>
+                        <td>
+                            <label th:text="*{Stringstatus}"></label>
+                        </td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <a th:href="@{/room/list}" class="anchor-to-button">Back</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="~{BaseLayout :: headlayout}"></head>
+<body class="main-body">
+    <header th:replace="~{BaseLayout :: header}"></header>
+    <nav th:replace="~{BaseLayout :: navlayout}"></nav>
+
+    <div class="content home-view">
+        <h1 th:text="|${status} ${tipe}|"></h1>
+        <h3 th:text="${messageError}"></h3>
+        <a th:href="@{${Link}}" class="logreg">Kembali ke laman sebelumnya</a>
+    </div>
+</body>
+</html>

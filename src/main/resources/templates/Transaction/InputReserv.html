@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="~{BaseLayout :: headlayout}"></head>
+<body class="main-body">
+    <header th:replace="~{BaseLayout :: header}"></header>
+    <nav th:replace="~{BaseLayout :: navlayout}"></nav>
+    <div class="content">
+        <div class="formtable">
+            <table>
+                <tbody>
+                    <form method="post" th:attr="action=@{/reserved/bill}" th:object="${dto}">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                        <tr>
+                            <td>
+                                <label>Room Number</label>
+                            </td>
+                            <td></td>
+                            <td>
+                                <label th:text="*{RoomNumber}"></label>
+                                <input type="hidden" th:field="*{RoomNumber}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Room Type</label>
+                            </td>
+                            <td></td>
+                            <td>
+                                <label th:text="*{Roomtype}"></label>
+                                <input type="hidden" th:field="*{Roomtype}">
+                                <input type="hidden" th:field="*{CustUsername}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Check In*</label>
+                            </td>
+                            <td></td>
+                            <td>
+                                <input type="date" th:field="*{Cekin}" id="cekin" onchange="cek();">
+                            </td>
+                            <td>
+                                <div class="validation-error" th:errors="*{Cekin}"></div>
+                                <div class="validation-error" th:errors="${dto}"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Check Out*</label>
+                            </td>
+                            <td></td>
+                            <td>
+                                <input type="date" th:field="*{Cekout}" id="cekot" onchange="cek();">
+                            </td>
+                            <td>
+                                <div class="validation-error" th:errors="*{Cekout}"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Price Per Day</label>
+                            </td>
+                            <td></td>
+                            <td>
+                                <label th:text="*{pricedayformated}"></label>
+                                <input type="hidden" th:field="*{priceday}" id="harga">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Bill</label>
+                            </td>
+                            <td></td>
+                            <td>
+                                <label id="totalharga"></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="submit" class="anchor-to-button">Reserve</button>
+                            </td>
+                        </tr>
+                    </form>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        let counter = 1;
+        (
+        function(){
+          reset();
+          }
+        )()
+
+        function reset(){
+            document.getElementById("cekin").setAttribute("min", new Date().toISOString().split('T')[0]);
+            document.getElementById("cekot").setAttribute("min", new Date().toISOString().split('T')[0]);
+        }
+
+        function cek(){
+            let cekin = document.getElementById("cekin").value;
+            let cekot = document.getElementById("cekot").value;
+            const perhari = document.getElementById("harga").value;
+            let total = document.getElementById("totalharga");
+
+            if(cekin === '' && cekot === ''){
+                reset();
+                total.textContent = "";
+            } else if(cekin != '' && cekot === ''){
+                document.getElementById("cekot").setAttribute("min", new Date(cekin).toISOString().split('T')[0]);
+                total.textContent = "";
+            } else if(cekin === '' && cekot != ''){
+                total.textContent = "";
+            } else {
+                if(new Date(cekot) < new Date(cekin)){
+                    document.getElementById("cekot").setAttribute("min", new Date(cekin).toISOString().split('T')[0]);
+                    document.getElementById("cekot").value = "";
+                    total.textContent = "";
+                } else {
+                    document.getElementById("cekot").setAttribute("min", new Date(cekin).toISOString().split('T')[0]);
+                    const bayar = perhari * totalhari(cekin, cekot);
+                    const ubah = new Intl.NumberFormat("id-ID", {style : "currency", currency : "IDR"}).format(bayar);
+                    total.textContent = ubah;
+                }
+            }
+        }
+
+        function totalhari( awal, akhir ){
+            let hasil = (new Date(akhir) - new Date(awal)) / 86400000;
+            if(hasil === 0 ){
+                hasil = 1;
+                return hasil;
+            } else {
+                return hasil;
+            }
+        }
+
+    </script>
+</body>
+</html>

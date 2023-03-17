@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="~{BaseLayout :: headlayout}"></head>
+<body class="main-body">
+    <header th:replace="~{BaseLayout :: header}"></header>
+    <nav th:replace="~{BaseLayout :: navlayout}"></nav>
+    
+    <div class="content">
+        <div class="searchform">
+            <form method="get" th:attr="action=@{/reserved/reservation}">
+                <table>
+                    <tr>
+                        <td>
+                            <select name="type">
+                                <option th:value="null" disabled selected>--Select Type--</option>
+                                <option th:value="Single">Single Bed</option>
+                                <option th:value="Double">Double Bed</option>
+                                <option th:value="Triple">Triple Bed</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button type="submit" class="anchor-to-button">Search</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+        <div class="grouptable">
+            <table>
+                <thead>
+                    <th>Room Number</th>
+                    <th>Type</th>
+                    <th>Price / day</th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
+                    <tr th:each="data : ${listrom}" th:object="${data}">
+                        <td th:text="*{RoomNumber}"></td>
+                        <td th:text="*{Type}"></td>
+                        <td th:text="*{hargaformated}"></td>
+                        <td>
+                            <a th:href="@{/reserved/bill(roomnumber = *{RoomNumber})}">Reserve</a>
+                        </td>
+                    </tr>
+                </tbody>
+<!--                <tfoot>-->
+<!--                    <tr>-->
+<!--                        <td colspan="7" class="foottable">-->
+<!--                            <div class="pagedesc">-->
+<!--                                <div th:if="${totalpage != 0}"-->
+<!--                                     th:text="|page ${currentpage} of ${totalpage}|"></div>-->
+<!--                                <div>-->
+<!--                                    <a th:if="${totalpage !=0 }"-->
+<!--                                       th:each="data : ${#numbers.sequence(1, totalpage)}"-->
+<!--                                       th:text="${data}"-->
+<!--                                       th:href="@{/reserved/currentreserved(halaman=${data})}"></a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                </tfoot>-->
+            </table>
+        </div>
+    </div>
+</body>
+</html>

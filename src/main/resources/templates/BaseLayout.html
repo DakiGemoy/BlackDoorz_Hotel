@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:fragment="headlayout">
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/ico" th:href="@{/resources/favicon.ico}"/>
+    <link rel="stylesheet" th:href="@{/resources/css/font-awesome.css}"/>
+    <link rel="stylesheet" th:href="@{/resources/css/tes.css}"/>
+    <title>BlackDoorz Hotel</title>
+</head>
+<body>
+    <header th:fragment="header">
+        <div class="userloged">
+            <p class="full-name"
+               th:text="| Welcome ${#authentication.getAuthorities()}, ${#authentication.name} |">Anon</p>
+        </div>
+        <div class="logout">
+            <form th:attr="action=@{/logout}" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <button type="submit" class="anchor-to-button">Logout</i></button>
+            </form>
+        </div>
+    </header>
+    <nav th:fragment="navlayout">
+        <a class="menu home" th:href="@{/home/view}">
+            <span>Home</span>
+        </a>
+
+        <a th:if="${role == 'SuperAdmin'}" class="menu admin" th:href="@{/admin/list}">
+            <span>Admin</span>
+        </a>
+
+        <a th:if="${role == 'SuperAdmin' || role == 'Administrator'}" class="menu customers" th:href="@{/customer/list}">
+            <span>Customer</span>
+        </a>
+
+        <a th:if="${role == 'SuperAdmin' || role == 'Administrator'}" class="menu room" th:href="@{/room/list}">
+            <span>Room</span>
+        </a>
+
+        <a th:if="${role == 'Administrator' || role == 'SuperAdmin'}" class="menu reservation" th:href="@{/reserved/currentreserved}">
+            <span>Reservation</span>
+        </a>
+
+        <a th:if="${role == 'Administrator' || role == 'Customer'}" class="menu profile" th:href="@{/updateaccount/changepassword}">
+            <span>Change My Profile</span>
+        </a>
+
+        <a th:if="${role == 'Customer'}" class="menu vacant" th:href="@{/reserved/reservation}">
+            <span>Vacant Rooms</span>
+        </a>
+
+        <a th:if="${role == 'Customer'}" class="menu reserv" th:href="@{/reserved/confirm}">
+            <span>My Reservation</span>
+        </a>
+
+        <a th:if="${role == 'Customer'}" class="menu transaction" th:href="@{/reserved/myreserv}">
+            <span>My Transactions</span>
+        </a>
+    </nav>
+</body>
+</html>

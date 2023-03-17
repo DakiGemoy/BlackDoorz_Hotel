@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{BaseLayout :: headlayout}"></head>
+<body class="authentication-body">
+    <div class="loginform">
+        <main>
+            <div class="headlogin">
+                <img th:src="@{/resources/logo.png}" alt="BlackDoorz Hotel">
+            </div>
+            <form method="post" th:attr="action=@{/login/regist}" th:object="${dto}">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                <tr>
+                    <td>
+                        <input placeholder="Username" type="text" th:field="*{Username}" required>
+                    </td>
+                    <td>
+                        <div class="validation-error" th:errors="*{Username}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input placeholder="Your Name" type="text" th:field="*{Name}">
+                    </td>
+                    <td>
+                        <div class="validation-error" th:errors="*{Name}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input placeholder="Your Email" type="email" th:field="*{Email}">
+                    </td>
+                    <td>
+                        <div class="validation-error" th:errors="*{Email}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <textarea placeholder="Your Address" id="" cols="30" rows="8" th:field="*{Address}"></textarea>
+                    </td>
+                    <td>
+                        <div class="validation-error" th:errors="*{Address}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input placeholder="Password" type="password" th:field="*{Password}">
+                    </td>
+                    <td>
+                        <div class="validation-error" th:errors="*{Password}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input placeholder="Re type Password above" type="password" th:field="*{repassword}">
+                    </td>
+                    <td>
+                        <div class="validation-error" th:errors="*{repassword}"></div>
+                        <div class="validation-error" th:errors="${dto}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="submit" class="anchor-to-button">Register</button>
+                        <a th:href="@{/login/formlogin}">back to login page</a>
+                    </td>
+                </tr>
+            </form>
+        </main>
+    </div>
+</body>
+</html>

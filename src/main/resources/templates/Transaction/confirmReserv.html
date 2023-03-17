@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="~{BaseLayout :: headlayout}"></head>
+<body class="main-body">
+    <header th:replace="~{BaseLayout :: header}"></header>
+    <nav th:replace="~{BaseLayout :: navlayout}"></nav>
+    <div class="content">
+        <div class="formtable">
+            <table>
+                <tbody>
+                <form method="post" th:attr="action=@{/reserved/confirm}" th:object="${dto}">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                    <tr>
+                        <td>
+                            <label>Room Number</label>
+                        </td>
+                        <td>
+                            <label th:text="*{RoomNumber}"></label>
+                            <input type="hidden" th:field="*{Idreserved}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Room Type</label>
+                        </td>
+                        <td>
+                            <label th:text="*{Roomtype}"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Check In*</label>
+                        </td>
+                        <td>
+                            <label th:text="*{cekinformated}"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Check Out*</label>
+                        </td>
+                        <td>
+                            <label th:text="*{cekoutformated}"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Price Per Day</label>
+                        </td>
+                        <td>
+                            <label th:text="*{price}"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Bill</label>
+                        </td>
+                        <td>
+                            <label th:text="*{totalbayar}"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td th:if="*{!Status}">
+                            <button type="submit" class="anchor-to-button">Confirm</button>
+                        </td>
+                        <td th:if="*{!Status}">
+                            <a th:href="@{/home/view}" class="anchor-to-button">Cancel</a>
+                        </td>
+                        <td th:if="*{Status}">
+                            <label>Confirmed!</label>
+                        </td>
+                    </tr>
+                </form>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

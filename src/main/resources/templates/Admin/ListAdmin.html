@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="~{BaseLayout :: headlayout}"></head>
+<body class="main-body">
+    <header th:replace="~{BaseLayout :: header}"></header>
+    <nav th:replace="~{BaseLayout :: navlayout}"></nav>
+    <div class="content">
+        <a th:href="@{/admin/insert}" class="anchor-to-button">Add New Admin</a>
+        <div class="grouptable">
+            <table>
+                <thead>
+                        <th>Username</th>
+                        <th>Job Title</th>
+                        <th>Action</th>
+                </thead>
+                <tbody>
+                    <tr th:each="data : ${listadmin}" th:object="${data}">
+                        <td th:text="*{AdminNumber}"></td>
+                        <td th:text="*{jobtitle}"></td>
+                        <td><a th:href="@{/admin/delete(admnumb=*{AdminNumber})}">Delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

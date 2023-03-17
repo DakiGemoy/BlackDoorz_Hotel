@@ -1,0 +1,316 @@
+*{
+    padding : 0;
+    margin : 0;
+}
+
+.authentication-body {
+    min-height: 100%;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+
+.loginform{
+    padding-top : 20%;
+}
+
+.loginform > main{
+    background-color: rgba(0, 0, 0, 0);
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 40px;
+    padding-top: 20px;
+    margin-top: 15px;
+    border-radius: 6px;
+    display: grid;
+    grid-template-columns: 1fr;
+    min-width: 330px;
+    justify-content: center;
+    text-align: center;
+    border : solid 1px black;
+    gap : 10px;
+}
+
+.loginform > main form{
+    display : grid;
+    gap : 5px;
+}
+
+.loginform form input{
+    display: block;
+    border: solid 1px black;
+    border-radius : 10px;
+    outline: none;
+    color: black;
+    background-color: rgba(88, 84, 84, 0.45);
+    padding: 10px;
+    border-bottom: 1px solid #14acf8;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.loginform form button {
+        background: linear-gradient(to right, #14acf8, #1481fa);
+        color: white;
+        cursor: pointer;
+        text-transform: uppercase;
+        border: none;
+        padding: 8px;
+        border-radius: 4px;
+}
+
+.loginform a {
+    text-decoration : none;
+    color : blue;
+}
+
+.validation-error{
+    display: inline-block;
+    box-sizing: border-box;
+    color: white;
+    background: linear-gradient(to right, #f84646, #d52c2f);
+    vertical-align: middle;
+    line-height: 20px;
+    padding: 0 12px;
+    border-radius: 4px;
+}
+
+.main-body{
+    min-height: 100%;
+    min-width:1200px;
+    display: -ms-grid;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 1fr;
+}
+
+.main-body > nav{
+    display:flex;
+    flex-direction:columns;
+    margin-left: 20px;
+    margin-right: 20px;
+    border : solid 1px black;
+}
+
+nav > a{
+    background-color: rgba(255, 255, 255);
+    padding:10px;
+    color : black;
+}
+
+a{
+    color : black;
+}
+
+a:hover{
+    color : blue;
+}
+
+nav > a:hover{
+    text-decoration:none;
+    background-color: rgba(184, 184, 184);
+    padding:10px;
+}
+
+.main-body > header{
+    display:flex;
+    flex-direction:columns;
+    margin-left: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.content{
+    padding-top : 1%;
+    margin-left : 20px;
+    margin-right : 20px;
+}
+
+.home-view{
+    border : solid 1px black;
+    border-radius : 5px;
+    margin: 150px;
+    display: flex;
+    flex-direction : column;
+    background : rgba(88, 30, 84, 0.45);
+    align-items: center;
+    gap:10px;
+    padding: 10px;
+}
+
+header{
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+}
+
+.userloged{
+    display : grid;
+    justify-items : center;
+    color : black;
+}
+
+.create-modal-dialog {
+    color : white;
+}
+
+.out{
+    background-color : rgba(88, 30, 84, 0.85);
+}
+
+.full-name{
+    font-weight: bold;
+}
+
+.searchform{
+    padding : 5px;
+    width : fit-content;
+}
+
+.searchform input{
+    padding : 11px;
+    border : solid 1px black;
+    margin : 5px 5px 5px 0;
+}
+
+.grouptable{
+    margin-top : 5px;
+    width : 100%;
+    border-radius : 5px;
+}
+
+.grouptable table {
+    width : 50%;
+    border-collapse : collapse;
+    justify-content : center;
+    margin-top : 10px;
+}
+
+.grouptable table th, .grouptable table tbody td {
+    border : solid 1px black;
+    padding : 10px;
+    margin : 2px;
+    text-align : center;
+}
+
+.grouptable th {
+    background-color : rgba(128, 128, 128, 0.546);
+}
+
+.foottable{
+    border : solid 0px black;
+    padding : 10px;
+}
+
+
+.anchor-to-button{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    color: white;
+    border-radius: 4px;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-decoration: none;
+    background: black;
+}
+
+.entry{
+    background: linear-gradient(to right, #36f814e6, #1f40ea);
+}
+
+.back{
+    background: linear-gradient(to right, #f85c14, #fa0c0c);
+}
+
+.edit{
+    background: linear-gradient(to right, #42f814db, #c6fa0c);
+}
+
+.post{
+    background: linear-gradient(to right, #14acf8, #1481fa);
+}
+
+.add{
+    background: linear-gradient(to right, #f2f76ae6, #c8ea1f);
+}
+
+.member{
+    text-decoration : none;
+    color : black;
+    font-weight : bold;
+}
+
+.member:hover{
+    font-style : italic;
+}
+
+.validation-error{
+    border-radius : 5px;
+    margin : 5px;
+    background-color: linear-gradient(to right, #fa4343, #fc1e1e);
+    color : white;
+}
+
+.logreg{
+    text-decoration : none;
+    color : blue;
+}
+
+.logreg:hover{
+    color : black;
+}
+
+.detailtable{
+    display : grid;
+    grid-template-columns : 1fr 1fr;
+    gap : 10px;
+}
+
+.detailtable td {
+    padding : 3px;
+}
+
+.table-kiri{
+    margin : 10px;
+    padding : 10px;
+}
+
+.table-kanan{
+    margin : 10px;
+    padding : 10px;
+}
+
+.detailtable .anchor-to-button{
+    grid-column : 1/3;
+    width :  fit-content;
+    justify-self: center;
+}
+
+.actionfield{
+    display : flex;
+    justify-content : space-around;
+}
+
+.pagedesc{
+    display : flex;
+    justify-content : space-between;
+}
+
+.headlogin{
+    display : flex;
+    flex-direction : column;
+    justify-self : center;
+    align-items : center;
+}
+
+.headlogin > img {
+    width : 80%;
+    height : 70px;
+}
+

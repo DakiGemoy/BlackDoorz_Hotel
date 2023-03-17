@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="~{BaseLayout :: headlayout}"></head>
+<body class="main-body">
+    <header th:replace="~{BaseLayout :: header}"></header>
+    <nav th:replace="~{BaseLayout :: navlayout}"></nav>
+    <div class="content">
+        <div class="searchform">
+            <form th:attr="action=@{/room/list}" method="get">
+                <table>
+                    <tr>
+                        <td>
+                            <input type="text" name="roomnumb"
+                                   placeholder="Search room number..." th:attr="value=${roomnumb}">
+                        </td>
+                        <td>
+                            <button class="anchor-to-button" type="submit">Search</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+        <div class="grouptable">
+            <a th:href="@{/room/upsert}" class="anchor-to-button">Add New Room</a>
+            <table>
+                <thead>
+                    <th>Number</th>
+                    <th>Type</th>
+                    <th>Price / Day</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
+                    <tr th:each="data : ${listroom}" th:object="${data}">
+                        <td th:text="*{RoomNumber}"></td>
+                        <td th:text="*{Type}"></td>
+                        <td th:text="*{hargaformated}"></td>
+                        <td th:text="*{status}"></td>
+                        <td>
+                            <div th:if="*{status == 'Vacant'}"
+                                 class="actionfield">
+                                    <a th:href="@{/room/upsert(roomnumb=*{RoomNumber})}">Edit</a>
+                                    <a th:href="@{/room/delete(roomnumb=*{RoomNumber})}">Delete</a>
+                            </div>
+                            <div th:unless="*{status == 'Vacant'}"
+                                 class="actionfield">
+                                    <a th:href="@{/room/detail(roomnumb=*{RoomNumber})}">Current Reservation</a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5" class="foottable">
+                            <div class="pagedesc">
+                                <div th:if="${totalpage != 0}"
+                                     th:text="|page ${currentpage} of ${totalpage}|"></div>
+                                <div>
+                                    <a th:if="${totalpage !=0 }"
+                                       th:each="data : ${#numbers.sequence(1, totalpage)}"
+                                       th:text="${data}"
+                                       th:href="@{/room/list(currentpage=${data}, roomnumb=${roomnumb})}"></a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
